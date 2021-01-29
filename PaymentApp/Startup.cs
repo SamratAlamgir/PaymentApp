@@ -28,9 +28,10 @@ namespace PaymentApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddDbContext<PaymentDataContext>(
-                options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+            
+            services.AddDbContext<PaymentDataContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("PaymentDbConnection"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -23,10 +23,8 @@ namespace Repository
 
         public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=PaymentDb;Integrated Security=SSPI;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

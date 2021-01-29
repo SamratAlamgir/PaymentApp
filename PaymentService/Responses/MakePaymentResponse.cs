@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PaymentService.Responses
+namespace PaymentManager.Responses
 {
     class MakePaymentResponse
     {

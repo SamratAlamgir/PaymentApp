@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PaymentManager;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,11 @@ namespace PaymentApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
-            services.AddDbContext<PaymentDataContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("PaymentDbConnection"));
-            });
+            services.RegisterPaymentServiceTypes(Configuration);
+
+            //services.AddDbContext<PaymentDataContext>(options => {
+            //    options.UseSqlServer(Configuration.GetConnectionString("PaymentDbConnection"));
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

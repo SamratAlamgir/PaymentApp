@@ -1,4 +1,4 @@
-﻿using PaymentManager.Dtos;
+﻿using PaymentManager.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +8,6 @@ namespace PaymentManager.Contracts
 {
     public interface IPaymentService
     {
-        Task<PaymentDto> GetPaymentByIdAsync(Guid paymentId);
+        Task<PaymentResponse> GetPaymentByIdAsync(Guid paymentId);
     }
 }

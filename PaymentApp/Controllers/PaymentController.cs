@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PaymentManager.Contracts;
-using PaymentManager.Dtos;
+using PaymentManager.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace PaymentApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PaymentDto>> GetPayment(Guid id)
+        public async Task<ActionResult<PaymentResponse>> GetPayment(Guid id)
         {
             var paymentDto = await _paymentService.GetPaymentByIdAsync(id);
 

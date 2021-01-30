@@ -1,5 +1,5 @@
 ﻿using PaymentManager.Contracts;
-using PaymentManager.Dtos;
+using PaymentManager.Responses;
 using Repository.Models;
 using Repository.Repositories;
 using System;
@@ -17,11 +17,11 @@ namespace PaymentManager
         {
             _paymentRepository = paymentRepository;
         }
-        public async Task<PaymentDto> GetPaymentByIdAsync(Guid paymentId)
+        public async Task<PaymentResponse> GetPaymentByIdAsync(Guid paymentId)
         {
             var payment = await _paymentRepository.GetPaymentById(paymentId);
 
-            return payment != null ? new PaymentDto { PaymentId = payment.PaymentId } : null; 
+            return payment != null ? new PaymentResponse { PaymentId = payment.PaymentId } : null; 
         }
     }
 }

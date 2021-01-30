@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PaymentManager.Dtos
+namespace PaymentManager.Responses
 {
-    public class PaymentDto
+    public class PaymentResponse
     {
         public Guid PaymentId { get; set; }
     }

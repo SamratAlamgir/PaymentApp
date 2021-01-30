@@ -4,7 +4,14 @@ using System.Text;
 
 namespace PaymentManager.Requests
 {
-    class MakePaymentRequest
+    public class MakePaymentRequest
     {
+        // TODO: Can be taken from token
+        public Guid MerchantId { get; set; }
+        public string CardNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public decimal Amount { get; set; }
+        public string CurrencyCode {get; set;}
+        public string CVV { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PaymentManager.Contracts;
+using PaymentManager.Requests;
 using PaymentManager.Responses;
 using Repository.Models;
 using Repository.Repositories;
@@ -23,6 +24,24 @@ namespace PaymentManager
             var payment = await _paymentRepository.GetPaymentById(paymentId);
 
             return payment != null ? new PaymentResponse { PaymentId = payment.PaymentId } : null; 
+        }
+
+        public async Task<PaymentResponse> MakePayment(MakePaymentRequest paymentRequest)
+        {
+            var cardNumber = paymentRequest.CardNumber;
+            var newPayment = new Payment
+            {
+                PaymentId = Guid.NewGuid(),
+                MerchantId = paymentRequest.MerchantId,
+                CardNumberMasked = cardNumber.Substring(cardNumber.Length - 4).PadLeft(cardNumber.Length, '*'),
+                Amount = paymentRequest.Amount,
+                CurrencyCode = paymentRequest.CurrencyCode,
+                CreatedOn = DateTime.UtcNow
+            };
+
+            newPayment = await _paymentRepository.AddAsync(newPayment);
+
+            return new PaymentResponse { PaymentId = newPayment.PaymentId };
         }
     }
 }

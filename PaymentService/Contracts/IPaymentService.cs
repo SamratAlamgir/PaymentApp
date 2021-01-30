@@ -1,4 +1,5 @@
-﻿using PaymentManager.Responses;
+﻿using PaymentManager.Requests;
+using PaymentManager.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +10,6 @@ namespace PaymentManager.Contracts
     public interface IPaymentService
     {
         Task<PaymentResponse> GetPaymentByIdAsync(Guid paymentId);
+        Task<PaymentResponse> MakePayment(MakePaymentRequest paymentRequest);
     }
 }

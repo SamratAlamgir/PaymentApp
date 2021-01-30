@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PaymentManager.Contracts;
+using PaymentManager.Requests;
 using PaymentManager.Responses;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,12 @@ namespace PaymentApp.Controllers
             }
 
             return paymentDto;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<PaymentResponse>> MakePayment(MakePaymentRequest request)
+        {
+            return await _paymentService.MakePayment(request);
         }
     }
 }

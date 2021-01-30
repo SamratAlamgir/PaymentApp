@@ -36,7 +36,9 @@ namespace PaymentApp.Controllers
         [HttpPost]
         public async Task<ActionResult<PaymentResponse>> MakePayment(MakePaymentRequest request)
         {
-            return await _paymentService.MakePayment(request);
+            var payment = await _paymentService.MakePayment(request);
+
+            return CreatedAtAction(nameof(GetPayment), new { id = payment.PaymentId }, payment);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BankApp;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PaymentManager.Contracts;
 using Repository;
@@ -13,6 +14,7 @@ namespace PaymentManager
         public static void RegisterPaymentServiceTypes(this IServiceCollection services, IConfiguration configuration)
         {
             services.RegisterRepositoryTypes(configuration);
+            services.RegisterBankAppTypes();
             services.AddTransient<IPaymentService, PaymentService>();
         }
     }

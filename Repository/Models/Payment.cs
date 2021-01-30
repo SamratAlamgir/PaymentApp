@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Repository.Models
 {
@@ -13,11 +11,7 @@ namespace Repository.Models
         public string CardNumberMasked { get; set; }
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
-        public ICollection<PaymentDetail> PaymentDetails {get; set;}
-
-        public Payment()
-        {
-            PaymentDetails = new List<PaymentDetail>();
-        }
+        public Guid BankPaymentRef { get; set; }
+        public short PaymentStaus { get; set; }
     }
 }

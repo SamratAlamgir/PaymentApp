@@ -21,8 +21,6 @@ namespace Repository
         public virtual DbSet<Merchant> Merchants { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
 
-        public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -45,11 +43,14 @@ namespace Repository
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<PaymentDetail>(entity =>
+            modelBuilder.Entity<Payment>(entity =>
             {
-                entity.Property(e => e.CardNumber)
+                entity.Property(e => e.CardNumberMasked)
                     .IsRequired()
                     .HasMaxLength(50);
+                
+                entity.Property(e => e.CurrencyCode)
+                    .IsRequired();
 
                 entity.Property(e => e.Amount).HasColumnType("decimal(10, 2)");
             });

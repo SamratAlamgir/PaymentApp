@@ -17,6 +17,7 @@ namespace Repository
             });
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IMerchantRepository, MerchantRepository>();
         }
     }
 }

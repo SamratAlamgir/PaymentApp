@@ -20,6 +20,11 @@ namespace PaymentApp.Controllers
             _paymentService = paymentService;
         }
 
+        /// <summary>
+        /// Get payment by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<PaymentResponse>> GetPayment(Guid id)
         {
@@ -33,6 +38,11 @@ namespace PaymentApp.Controllers
             return paymentDto;
         }
 
+        /// <summary>
+        /// Create Payment request
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<PaymentResponse>> MakePayment(MakePaymentRequest request)
         {

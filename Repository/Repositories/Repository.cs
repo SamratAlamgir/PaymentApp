@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,19 @@ namespace Repository.Repositories
             {
                 throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
+        }
+
+        public IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression)
+        {
+            try
+            {
+                return _dbContext.Set<TEntity>().Where(expression);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+
         }
 
         public async Task<TEntity> AddAsync(TEntity entity)

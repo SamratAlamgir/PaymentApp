@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Repository.Repositories
@@ -10,5 +12,6 @@ namespace Repository.Repositories
         Task<TEntity> AddAsync(TEntity entity);
 
         Task<TEntity> UpdateAsync(TEntity entity);
+        IQueryable<TEntity> FindByCondition(Expression<Func<TEntity, bool>> expression);
     }
 }

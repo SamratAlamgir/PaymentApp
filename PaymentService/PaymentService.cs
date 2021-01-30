@@ -1,4 +1,5 @@
-﻿using PaymentManager.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using PaymentManager.Contracts;
 using PaymentManager.Responses;
 using Repository.Models;
 using Repository.Repositories;

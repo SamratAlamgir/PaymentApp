@@ -15,8 +15,8 @@ namespace Repository
             services.AddDbContext<PaymentDataContext>(options => {
                 options.UseSqlServer(configuration.GetConnectionString("PaymentDbConnection"));
             });
-            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
         }
     }
 }

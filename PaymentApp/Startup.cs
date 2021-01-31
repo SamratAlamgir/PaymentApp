@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PaymentApp.Auth;
 using PaymentManager;
 using Repository;
 using System;
@@ -32,6 +33,8 @@ namespace PaymentApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.RegisterPaymentServiceTypes(Configuration);
+            services.AddScoped<IApiKeyService, ApiKeyService>();
+
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

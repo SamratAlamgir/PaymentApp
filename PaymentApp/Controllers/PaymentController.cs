@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PaymentApp.Attributes;
 using PaymentManager.Contracts;
 using PaymentManager.Requests;
 using PaymentManager.Responses;
@@ -13,6 +14,7 @@ namespace PaymentApp.Controllers
     [Produces("application/json")]
     [Route("api/payments")]
     [ApiController]
+    [ApiKeyAuthorize]
     public class PaymentController : ControllerBase
     {
         private readonly ILogger<PaymentController> _logger;

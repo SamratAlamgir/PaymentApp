@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace PaymentApp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/payments")]
     [ApiController]
     public class PaymentController : ControllerBase
@@ -28,6 +29,8 @@ namespace PaymentApp.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// /// <response code="200">Returns payment for the Id</response>
+        /// <response code="404">If the payment not found</response> 
         [HttpGet("{id}")]
         public async Task<ActionResult<PaymentResponse>> GetPayment(Guid id)
         {
@@ -48,7 +51,9 @@ namespace PaymentApp.Controllers
         /// Create Payment request
         /// </summary>
         /// <param name="request"></param>
-        /// <returns></returns>
+        /// <returns>A newly created Payment information</returns>
+        /// <response code="201">Returns the newly created payment</response>
+        /// <response code="400">If the item is null</response> 
         [HttpPost]
         public async Task<ActionResult<PaymentResponse>> MakePayment(MakePaymentRequest request)
         {

@@ -1,6 +1,7 @@
 ﻿using BankApp;
 using Microsoft.EntityFrameworkCore;
 using PaymentManager.Contracts;
+using PaymentManager.Mapper;
 using PaymentManager.Requests;
 using PaymentManager.Responses;
 using Repository.Models;
@@ -30,7 +31,7 @@ namespace PaymentManager
         {
             var payment = await _paymentRepository.GetPaymentById(paymentId);
 
-            return payment != null ? new PaymentResponse { PaymentId = payment.PaymentId } : null; 
+            return payment.ConverToPaymentResponse(); 
         }
 
         public async Task<PaymentResponse> MakePayment(MakePaymentRequest paymentRequest)
@@ -52,7 +53,7 @@ namespace PaymentManager
 
             newPayment = await _paymentRepository.AddAsync(newPayment);
 
-            return new PaymentResponse { PaymentId = newPayment.PaymentId };
+            return newPayment.ConverToPaymentResponse();
         }
 
         private async Task<BankPaymentResponse> MakeBankPaymentRequest(MakePaymentRequest paymentRequest)

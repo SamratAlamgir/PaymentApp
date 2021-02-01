@@ -4,6 +4,7 @@ using PaymentManager.Contracts;
 using PaymentManager.Mapper;
 using PaymentManager.Requests;
 using PaymentManager.Responses;
+using PaymentManager.Validators;
 using Repository.Models;
 using Repository.Repositories;
 using System;
@@ -20,14 +21,17 @@ namespace PaymentManager
         private readonly IPaymentRepository _paymentRepository;
         private readonly IMerchantService _merchantService;
         private readonly IBankService _bankService;
+        private readonly ICardValidatorProvider _cardValidatorProvider;
 
         public PaymentService(IPaymentRepository paymentRepository, 
             IMerchantService merchantService, 
-            IBankService bankService)
+            IBankService bankService,
+            ICardValidatorProvider cardValidatorProvider)
         {
             _paymentRepository = paymentRepository;
             _merchantService = merchantService;
             _bankService = bankService;
+            _cardValidatorProvider = cardValidatorProvider;
         }
         public async Task<PaymentResponse> GetPaymentByIdAsync(Guid paymentId)
         {
@@ -62,9 +66,8 @@ namespace PaymentManager
 
         private void ValidatePaymentRequest(MakePaymentRequest paymentRequest)
         {
-            // Place all card payment validation
-            if (!Regex.IsMatch(paymentRequest.CardNumber, @"^\d+$"))
-                throw new ValidationException("Invalid Card Number");
+            var cardValidator = _cardValidatorProvider.GetCardValidator(paymentRequest.CardNumber);
+            cardValidator.Validate(paymentRequest);
         }
 
         private async Task<BankPaymentResponse> MakeBankPaymentRequest(MakePaymentRequest paymentRequest)

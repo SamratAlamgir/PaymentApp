@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PaymentManager.Contracts;
+using PaymentManager.Validators;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace PaymentManager
             services.RegisterBankAppTypes();
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IMerchantService, MerchantService>();
+            services.AddSingleton<ICardValidatorProvider, CardValidatorProvider>();
         }
     }
 }

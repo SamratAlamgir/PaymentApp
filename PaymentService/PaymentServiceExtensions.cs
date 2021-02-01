@@ -15,7 +15,8 @@ namespace PaymentManager
         {
             services.RegisterRepositoryTypes(configuration);
             services.RegisterBankAppTypes();
-            services.AddTransient<IPaymentService, PaymentService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IMerchantService, MerchantService>();
         }
     }
 }

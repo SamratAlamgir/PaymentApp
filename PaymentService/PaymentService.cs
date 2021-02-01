@@ -16,15 +16,15 @@ namespace PaymentManager
     public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
-        private readonly IMerchantRepository _merchantRepository;
+        private readonly IMerchantService _merchantService;
         private readonly IBankService _bankService;
 
         public PaymentService(IPaymentRepository paymentRepository, 
-            IMerchantRepository merchantRepository, 
+            IMerchantService merchantService, 
             IBankService bankService)
         {
             _paymentRepository = paymentRepository;
-            _merchantRepository = merchantRepository;
+            _merchantService = merchantService;
             _bankService = bankService;
         }
         public async Task<PaymentResponse> GetPaymentByIdAsync(Guid paymentId)
@@ -58,7 +58,7 @@ namespace PaymentManager
 
         private async Task<BankPaymentResponse> MakeBankPaymentRequest(MakePaymentRequest paymentRequest)
         {
-            var merchant = await _merchantRepository.FindByCondition(x => x.MerchantId == paymentRequest.MerchantId).SingleAsync();
+            var merchant = await _merchantService.GetMerchantById(paymentRequest.MerchantId);
 
             var bankPaymentRequest = new BankPaymentRequest
             {
@@ -71,7 +71,6 @@ namespace PaymentManager
             };
 
             return await _bankService.MakeBankPayment(bankPaymentRequest);
-            
         }
     }
 }

@@ -8,7 +8,9 @@ using Repository.Models;
 using Repository.Repositories;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PaymentManager
@@ -36,6 +38,8 @@ namespace PaymentManager
 
         public async Task<PaymentResponse> MakePayment(MakePaymentRequest paymentRequest)
         {
+            ValidatePaymentRequest(paymentRequest);
+
             var bankPaymentResponse = await MakeBankPaymentRequest(paymentRequest);
 
             var cardNumber = paymentRequest.CardNumber;
@@ -54,6 +58,13 @@ namespace PaymentManager
             newPayment = await _paymentRepository.AddAsync(newPayment);
 
             return newPayment.ConverToPaymentResponse();
+        }
+
+        private void ValidatePaymentRequest(MakePaymentRequest paymentRequest)
+        {
+            // Place all card payment validation
+            if (!Regex.IsMatch(paymentRequest.CardNumber, @"^\d+$"))
+                throw new ValidationException("Invalid Card Number");
         }
 
         private async Task<BankPaymentResponse> MakeBankPaymentRequest(MakePaymentRequest paymentRequest)

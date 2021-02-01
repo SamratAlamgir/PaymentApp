@@ -6,6 +6,7 @@ using PaymentManager.Requests;
 using PaymentManager.Responses;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -61,9 +62,16 @@ namespace PaymentApp.Controllers
         {
             _logger.LogInformation("New payment requested");
 
-            var payment = await _paymentService.MakePayment(request);
+            try
+            {
+                var payment = await _paymentService.MakePayment(request);
 
-            return CreatedAtAction(nameof(GetPayment), new { id = payment.PaymentId }, payment);
+                return CreatedAtAction(nameof(GetPayment), new { id = payment.PaymentId }, payment);
+            }
+            catch(ValidationException vex)
+            {
+                return BadRequest(vex.Message);
+            }
         }
     }
 }

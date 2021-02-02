@@ -107,7 +107,7 @@ namespace PaymentManager.Tests
                 CardNumber = "abc2245678974558"
             };
 
-            PaymentResponse response = await paymentService.MakePayment(paymentRequest);
+            await paymentService.MakePayment(paymentRequest);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace PaymentManager
             {
                 PaymentId = Guid.NewGuid(),
                 MerchantId = paymentRequest.MerchantId,
-                CardNumberMasked = cardNumber.Substring(cardNumber.Length - 4).PadLeft(cardNumber.Length, '*'),
+                CardNumberMasked = cardNumber[^4..].PadLeft(cardNumber.Length, '*'),
                 Amount = paymentRequest.Amount,
                 CurrencyCode = paymentRequest.CurrencyCode,
                 CreatedOn = DateTime.UtcNow,

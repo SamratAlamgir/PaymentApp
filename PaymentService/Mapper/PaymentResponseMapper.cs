@@ -1,4 +1,5 @@
-﻿using PaymentManager.Responses;
+﻿using AppCodes;
+using PaymentManager.Responses;
 using Repository.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace PaymentManager.Mapper
                 MerchantId = payment.MerchantId,
                 Amount = payment.Amount,
                 CurrencyCode = payment.CurrencyCode,
-                PaymentStaus = payment.PaymentStaus.ToString(),
+                PaymentStaus = ((PaymentStatus)payment.PaymentStaus).ToString(),
                 CardNumberMasked = payment.CardNumberMasked,
                 CreatedOn = payment.CreatedOn,
                 BankPaymentRef = payment.BankPaymentRef

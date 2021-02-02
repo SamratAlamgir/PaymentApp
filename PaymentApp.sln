@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentApp", "PaymentApp\Pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentManager", "PaymentService\PaymentManager.csproj", "{B90A643B-7C2E-4852-9DE8-F557E0CEECB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{B1333D97-7F76-4B7F-8EDF-BDFDC8F03D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{B1333D97-7F76-4B7F-8EDF-BDFDC8F03D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCodes", "AppCodes\AppCodes.csproj", "{36BA3BCD-3499-49B1-879F-C75EC2D07F93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCodes", "AppCodes\AppCodes.csproj", "{36BA3BCD-3499-49B1-879F-C75EC2D07F93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApp", "BankApp\BankApp.csproj", "{6ACD3A02-B4C9-466A-BB1A-5546BB419210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp", "BankApp\BankApp.csproj", "{6ACD3A02-B4C9-466A-BB1A-5546BB419210}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentManager.Tests", "PaymentManager.Tests\PaymentManager.Tests.csproj", "{37765B1C-D947-4DB9-BD74-963C86480AE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{6ACD3A02-B4C9-466A-BB1A-5546BB419210}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ACD3A02-B4C9-466A-BB1A-5546BB419210}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ACD3A02-B4C9-466A-BB1A-5546BB419210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37765B1C-D947-4DB9-BD74-963C86480AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37765B1C-D947-4DB9-BD74-963C86480AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37765B1C-D947-4DB9-BD74-963C86480AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37765B1C-D947-4DB9-BD74-963C86480AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
